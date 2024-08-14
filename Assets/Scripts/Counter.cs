@@ -1,35 +1,43 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Counter : MonoBehaviour
 {
-    [SerializeField] private Button _button;
     [SerializeField] private float _delay = 0.5f;
     [SerializeField] private int _valueChange = 1;
 
     private int _score = 0;
-
     private bool _isRunning = false;
-
+    private Coroutine _coroutine;
     private WaitForSeconds _wait;
 
     public event Action<int> ScoreChanged;
 
+    private void Start()
+    {
+        _wait = new WaitForSeconds(_delay);
+    }
+
+    private void Update()
+    {
+        IncreaseScore();
+    }
+
     private void IncreaseScore()
     {
-        if (_isRunning == false)
+        if (Input.GetMouseButtonDown(0) && _isRunning == false)
         {
-            _isRunning = true;
+            _isRunning = !_isRunning;
 
-            StartCoroutine(StartCounting());
+            _coroutine = StartCoroutine(StartCounting());
         }
-        else
+        else if (Input.GetMouseButtonDown(0) && _isRunning == true)
         {
-            _isRunning = false;
+            _isRunning = !_isRunning;
 
-            StopCoroutine(StartCounting());
+            if (_coroutine != null)
+                StopCoroutine(_coroutine);
         }
     }
 
@@ -41,25 +49,5 @@ public class Counter : MonoBehaviour
             ScoreChanged?.Invoke(_score);
             yield return _wait;
         }
-    }
-
-    private void Awake()
-    {
-        _button = GetComponent<Button>();
-    }
-
-    private void Start()
-    {
-        _wait = new WaitForSeconds(_delay);
-    }
-
-    private void OnEnable()
-    {
-        _button.onClick.AddListener(IncreaseScore);
-    }
-
-    private void OnDisable()
-    {
-        _button.onClick.RemoveListener(IncreaseScore);
     }
 }

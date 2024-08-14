@@ -624,7 +624,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 150}
+  m_SizeDelta: {x: 500, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1743203944
 MonoBehaviour:
@@ -684,8 +684,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _counter: {fileID: 1743203946}
   _counterText: {fileID: 1743203947}
-  _counterAnimator: {fileID: 0}
-  _countAnimation: {fileID: 0}
+  _counterAnimator: {fileID: 580591551}
+  _countAnimation: {fileID: 7400000, guid: e3cdd4527b75c0546b6920d846b5523b, type: 2}
 --- !u!114 &1743203946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -698,7 +698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a30206f7ae5025459e9e37b8c2839d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _button: {fileID: 1743203944}
+  _button: {fileID: 0}
   _delay: 0.5
   _valueChange: 1
 --- !u!114 &1743203947
